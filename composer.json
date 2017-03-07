@@ -1,0 +1,16 @@
+{
+    "name": "onfact/btw-attest-php-api",
+    "license" : "MIT",
+    "require-dev": {
+        "codeception/codeception": "^2.1"
+    },
+    "authors": [
+        {
+            "name": "Kevin Van Gyseghem",
+            "email": "kevin@infinwebs.be"
+        } 
+    ], 
+    "autoload": {
+            "files": ["src/Api/Api.php"]
+    }
+}
