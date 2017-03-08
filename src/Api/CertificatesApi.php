@@ -14,14 +14,20 @@ class CertificatesApi {
             if($response['data']['name'] == 'MissingXUserKeyException') {
                 throw new MissingXUserKeyException();
             } 
-        } 
-        
-        $certificates = [];
-        foreach($response['data']['certificates'] as $apiData) {
-            $certificates[] = new Certificate($apiData);
+        }  
+         
+        if($response['http_code'] >= 200 && $response['http_code'] < 300) { 
+            $certificates = [];
+            foreach($response['data']['certificates'] as $apiData) {
+                $certificates[] = new Certificate($apiData);
+            }
+            
+            return $certificates;
+        } elseif($response['http_code'] == '500') { 
+            throw new InternalException(); 
+        } else {
+            throw new UnknownErrorException($response['data']['name']);
         }
-        
-        return $certificates;
     }
     
     public function add($certificate) { 
@@ -67,9 +73,15 @@ class CertificatesApi {
             if($response['data']['name'] == 'AccountExpiredException') {
                 throw new InvalidDataException();
             }  
-        } 
-        
-        return new Certificate($response['data']['certificate']);
+        }  
+         
+        if($response['http_code'] >= 200 && $response['http_code'] < 300) { 
+            return new Certificate($response['data']['certificate']);
+        } elseif($response['http_code'] == '500') { 
+            throw new InternalException(); 
+        } else {
+            throw new UnknownErrorException($response['data']['name']);
+        }
     }
     
     public function edit($certificate) { 
