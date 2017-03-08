@@ -12,13 +12,24 @@ class AuthTest extends \PHPUnit_Framework_TestCase
     }   
     
     public function testNoAuth() {
-        $VatCertificates = new \VatCertificates\Api("", ""); ;
+        $VatCertificates = new \VatCertificates\Api(""); ;
         
         try {
             $certificate = new \VatCertificates\Certificate();
             $VatCertificates->Certificates->add($certificate);
         } catch(VatCertificates\Exception $e) { 
             $this->assertEquals(get_class($e),'VatCertificates\MissingXUserKeyException'); 
+        } 
+    } 
+    
+    public function testInvalidAuth() {
+        $VatCertificates = new \VatCertificates\Api("abc"); ;
+        
+        try {
+            $certificate = new \VatCertificates\Certificate();
+            $VatCertificates->Certificates->add($certificate);
+        } catch(VatCertificates\Exception $e) { 
+            $this->assertEquals(get_class($e),'VatCertificates\InvalidXUserKeyException'); 
         } 
     } 
      

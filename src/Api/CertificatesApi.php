@@ -14,6 +14,9 @@ class CertificatesApi {
             if($response['data']['name'] == 'MissingXUserKeyException') {
                 throw new MissingXUserKeyException();
             } 
+            if($response['data']['name'] == 'InvalidXUserKeyException') {
+                throw new InvalidXUserKeyException();
+            } 
         }  
          
         if($response['http_code'] >= 200 && $response['http_code'] < 300) { 
@@ -36,6 +39,9 @@ class CertificatesApi {
         if($response['http_code'] == 403) { 
             if($response['data']['name'] == 'MissingXUserKeyException') {
                 throw new MissingXUserKeyException();
+            } 
+            if($response['data']['name'] == 'InvalidXUserKeyException') {
+                throw new InvalidXUserKeyException();
             } 
         } 
         
@@ -63,16 +69,16 @@ class CertificatesApi {
     public function view($uuid) {
         $response = $this->api->get('certificates/' . $uuid .'.json');   
         
-        if($response['http_code'] == 404) { 
-            if($response['data']['name'] == 'NotFoundException') {
-                throw new NotFoundException();
-            } 
-        }  
-        
         if($response['http_code'] == 400) { 
             if($response['data']['name'] == 'AccountExpiredException') {
                 throw new InvalidDataException();
             }  
+        }  
+        
+        if($response['http_code'] == 404) { 
+            if($response['data']['name'] == 'NotFoundException') {
+                throw new NotFoundException();
+            } 
         }  
          
         if($response['http_code'] >= 200 && $response['http_code'] < 300) { 
@@ -93,7 +99,10 @@ class CertificatesApi {
         if($response['http_code'] == 403) { 
             if($response['data']['name'] == 'MissingXUserKeyException') {
                 throw new MissingXUserKeyException();
-            } 
+            }
+            if($response['data']['name'] == 'InvalidXUserKeyException') {
+                throw new InvalidXUserKeyException();
+            }  
         } 
         
         if($response['http_code'] == 400) {
@@ -127,6 +136,9 @@ class CertificatesApi {
         if($response['http_code'] == 403) { 
             if($response['data']['name'] == 'MissingXUserKeyException') {
                 throw new MissingXUserKeyException();
+            } 
+            if($response['data']['name'] == 'InvalidXUserKeyException') {
+                throw new InvalidXUserKeyException();
             } 
         } 
         
