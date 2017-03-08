@@ -7,6 +7,8 @@ class Exception extends \Exception {}
 // Auth Exceptions
 class MissingXUserKeyException extends Exception {};  
 class InvalidXUserKeyException extends Exception {};  
+class AccountLimitReachedException extends Exception  {}; 
+class AccountExpiredException extends Exception  {};  
 
 // Certificate Exceptions
 class NotFoundException extends Exception {};

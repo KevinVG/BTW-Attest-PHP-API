@@ -37,6 +37,12 @@ class CertificatesApi {
             if($response['data']['name'] == 'InvalidDataException') {
                 throw new InvalidDataException();
             }  
+            if($response['data']['name'] == 'AccountLimitReachedException') {
+                throw new InvalidDataException();
+            }  
+            if($response['data']['name'] == 'AccountExpiredException') {
+                throw new InvalidDataException();
+            }  
         } 
         
         if($response['http_code'] >= 200 && $response['http_code'] < 300) { 
@@ -56,6 +62,13 @@ class CertificatesApi {
                 throw new NotFoundException();
             } 
         }  
+        
+        if($response['http_code'] == 400) { 
+            if($response['data']['name'] == 'AccountExpiredException') {
+                throw new InvalidDataException();
+            }  
+        } 
+        
         return new Certificate($response['data']['certificate']);
     }
     
@@ -74,7 +87,10 @@ class CertificatesApi {
         if($response['http_code'] == 400) {
             if($response['data']['name'] == 'InvalidDataException') {
                 throw new InvalidDataException();
-            }  
+            }   
+            if($response['data']['name'] == 'AccountExpiredException') {
+                throw new InvalidDataException();
+            }   
         } 
         
         if($response['http_code'] >= 200 && $response['http_code'] < 300) { 
@@ -88,6 +104,13 @@ class CertificatesApi {
     
     public function delete($uuid) { 
         $response = $this->api->delete('certificates/'.$uuid.'.json');   
+        
+        
+        if($response['http_code'] == 400) { 
+            if($response['data']['name'] == 'AccountExpiredException') {
+                throw new InvalidDataException();
+            }  
+        } 
         
         if($response['http_code'] == 403) { 
             if($response['data']['name'] == 'MissingXUserKeyException') {
