@@ -3,11 +3,13 @@ namespace VatCertificates;
  
 // Api
 require_once('CertificatesApi.php'); 
+require_once('CompaniesApi.php'); 
 require_once('Exceptions.php'); 
 
 // Models
 require_once(__DIR__ . '/../Model/ApiObject.php');
 require_once(__DIR__ . '/../Model/Certificate.php');
+require_once(__DIR__ . '/../Model/Company.php');
 
 class Api {
     
@@ -19,6 +21,7 @@ class Api {
         
         // Initialization
         $this->Certificates = new CertificatesApi($this);
+        $this->Companies = new CompaniesApi($this);
         
     }
     

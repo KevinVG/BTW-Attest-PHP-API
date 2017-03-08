@@ -21,8 +21,7 @@ class Certificate implements ApiObject {
     private $signed;
     private $sign_date;
     private $sign_location;
-    private $permalink;
-    
+    private $permalink; 
     
     public function __construct($apiData = array()) {
         $this->uuid = isset($apiData['Certificate']['uuid']) ? $apiData['Certificate']['uuid'] : '';
