@@ -22,6 +22,7 @@ class Certificate implements ApiObject {
     private $sign_date;
     private $sign_location;
     private $permalink; 
+    private $deleted; 
     
     public function __construct($apiData = array()) {
         $this->uuid = isset($apiData['Certificate']['uuid']) ? $apiData['Certificate']['uuid'] : '';
@@ -43,6 +44,7 @@ class Certificate implements ApiObject {
         $this->sign_date = isset($apiData['Certificate']['sign_date']) ? $apiData['Certificate']['sign_date'] : '';
         $this->sign_location = isset($apiData['Certificate']['sign_location']) ? $apiData['Certificate']['sign_location'] : '';
         $this->permalink = isset($apiData['Certificate']['permalink']) ? $apiData['Certificate']['permalink'] : '';
+        $this->deleted = isset($apiData['Certificate']['deleted']) ? $apiData['Certificate']['deleted'] : '';
     }	
     
     /**
@@ -65,6 +67,9 @@ class Certificate implements ApiObject {
                 "city" => $this->city,
                 "use_type" => $this->use_type,
                 "private_usage" => $this->private_usage,
+                "pdf" => $this->pdf,
+                "permalink" => $this->permalink,
+                "signed" => $this->signed,
             )    
         );
     } 
@@ -194,8 +199,8 @@ class Certificate implements ApiObject {
 		return $this->pdf;
 	}  
 
-	public function getSigned(){
-		return $this->signed;
+	public function isSigned(){
+		return true && $this->signed;
 	} 
 
 	public function getSignDate(){
@@ -208,6 +213,10 @@ class Certificate implements ApiObject {
 
 	public function getPermalink(){
 		return $this->permalink;
+	} 
+
+	public function isDeleted(){
+		return true && $this->deleted;
 	} 
     
     
