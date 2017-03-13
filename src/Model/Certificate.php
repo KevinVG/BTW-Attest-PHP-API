@@ -4,6 +4,7 @@ namespace VatCertificates;
 class Certificate implements ApiObject {
     
     private $uuid;
+    private $number_formatted;
     private $reference_document;
     private $reference;
     private $reference_date;
@@ -26,6 +27,7 @@ class Certificate implements ApiObject {
     
     public function __construct($apiData = array()) {
         $this->uuid = isset($apiData['Certificate']['uuid']) ? $apiData['Certificate']['uuid'] : '';
+        $this->number_formatted = isset($apiData['Certificate']['number_formatted']) ? $apiData['Certificate']['number_formatted'] : '';
         $this->reference_document = isset($apiData['Certificate']['reference_document']) ? $apiData['Certificate']['reference_document'] : '';
         $this->reference = isset($apiData['Certificate']['reference']) ? $apiData['Certificate']['reference'] : '';
         $this->reference_date = isset($apiData['Certificate']['reference_date']) ? $apiData['Certificate']['reference_date'] : '';
@@ -54,6 +56,7 @@ class Certificate implements ApiObject {
         return array(
             "Certificate" => array(
             	"uuid" => $this->uuid,
+            	"number_formatted" => $this->number_formatted,
                 "reference_document" => $this->reference_document,
                 "reference" => $this->reference,
                 "reference_date" => $this->reference_date,
@@ -76,6 +79,10 @@ class Certificate implements ApiObject {
     
     public function getUuid(){
 		return $this->uuid;
+	}
+    
+    public function getNumberFormatted(){
+		return $this->number_formatted;
 	}
     
     public function getReferenceDocument(){
