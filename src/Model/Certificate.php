@@ -9,6 +9,7 @@ class Certificate implements ApiObject {
     private $reference;
     private $reference_date;
     private $reference_url;
+    private $webhook_url;
     private $firstname;
     private $lastname;
     private $living_at;
@@ -32,6 +33,7 @@ class Certificate implements ApiObject {
         $this->reference = isset($apiData['Certificate']['reference']) ? $apiData['Certificate']['reference'] : '';
         $this->reference_date = isset($apiData['Certificate']['reference_date']) ? $apiData['Certificate']['reference_date'] : '';
         $this->reference_url = isset($apiData['Certificate']['reference_url']) ? $apiData['Certificate']['reference_url'] : '';
+        $this->webhook_url = isset($apiData['Certificate']['webhook_url']) ? $apiData['Certificate']['webhook_url'] : '';
         $this->firstname = isset($apiData['Certificate']['firstname']) ? $apiData['Certificate']['firstname'] : '';
         $this->lastname = isset($apiData['Certificate']['lastname']) ? $apiData['Certificate']['lastname'] : '';
         $this->living_at = isset($apiData['Certificate']['living_at']) ? $apiData['Certificate']['living_at'] : '';
@@ -61,6 +63,7 @@ class Certificate implements ApiObject {
                 "reference" => $this->reference,
                 "reference_date" => $this->reference_date,
                 "reference_url" => $this->reference_url,
+                "webhook_url" => $this->webhook_url,
                 "firstname" => $this->firstname,
                 "lastname" => $this->lastname,
                 "living_at" => $this->living_at,
@@ -112,12 +115,21 @@ class Certificate implements ApiObject {
 		return $this;
 	}
 
-	public function getReference_url(){
+	public function getReferenceUrl(){
 		return $this->reference_url;
 	}
 
-	public function setReference_url($reference_url){
+	public function setReferenceUrl($reference_url){
 		$this->reference_url = $reference_url;
+		return $this;
+	}
+
+	public function getWebhookUrl(){
+		return $this->webhook_url;
+	}
+
+	public function setWebhookUrl($webhook_url){
+		$this->webhook_url = $webhook_url;
 		return $this;
 	}
 
