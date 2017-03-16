@@ -50,11 +50,8 @@ class CertificatesApi {
                 throw new InvalidDataException();
             }  
             if($response['data']['name'] == 'AccountLimitReachedException') {
-                throw new InvalidDataException();
-            }  
-            if($response['data']['name'] == 'AccountExpiredException') {
-                throw new InvalidDataException();
-            }  
+                throw new AccountLimitReachedException();
+            }   
         } 
         
         if($response['http_code'] >= 200 && $response['http_code'] < 300) { 
