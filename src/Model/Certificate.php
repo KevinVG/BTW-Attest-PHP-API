@@ -10,6 +10,7 @@ class Certificate implements ApiObject {
     private $reference_date;
     private $reference_url;
     private $webhook_url;
+    private $language_id = "nld";
     private $firstname;
     private $lastname;
     private $living_at;
@@ -23,6 +24,7 @@ class Certificate implements ApiObject {
     private $signed;
     private $sign_date;
     private $sign_location;
+    private $sent_to;
     private $permalink; 
     private $deleted; 
     
@@ -34,6 +36,7 @@ class Certificate implements ApiObject {
         $this->reference_date = isset($apiData['Certificate']['reference_date']) ? $apiData['Certificate']['reference_date'] : '';
         $this->reference_url = isset($apiData['Certificate']['reference_url']) ? $apiData['Certificate']['reference_url'] : '';
         $this->webhook_url = isset($apiData['Certificate']['webhook_url']) ? $apiData['Certificate']['webhook_url'] : '';
+        $this->language_id = isset($apiData['Certificate']['language_id']) ? $apiData['Certificate']['language_id'] : 'nld';
         $this->firstname = isset($apiData['Certificate']['firstname']) ? $apiData['Certificate']['firstname'] : '';
         $this->lastname = isset($apiData['Certificate']['lastname']) ? $apiData['Certificate']['lastname'] : '';
         $this->living_at = isset($apiData['Certificate']['living_at']) ? $apiData['Certificate']['living_at'] : '';
@@ -47,6 +50,7 @@ class Certificate implements ApiObject {
         $this->signed = isset($apiData['Certificate']['signed']) ? $apiData['Certificate']['signed'] : '';
         $this->sign_date = isset($apiData['Certificate']['sign_date']) ? $apiData['Certificate']['sign_date'] : '';
         $this->sign_location = isset($apiData['Certificate']['sign_location']) ? $apiData['Certificate']['sign_location'] : '';
+        $this->sent_to = isset($apiData['Certificate']['sent_to']) ? $apiData['Certificate']['sent_to'] : '';
         $this->permalink = isset($apiData['Certificate']['permalink']) ? $apiData['Certificate']['permalink'] : '';
         $this->deleted = isset($apiData['Certificate']['deleted']) ? $apiData['Certificate']['deleted'] : '';
     }	
@@ -64,6 +68,7 @@ class Certificate implements ApiObject {
                 "reference_date" => $this->reference_date,
                 "reference_url" => $this->reference_url,
                 "webhook_url" => $this->webhook_url,
+                "language_id" => $this->language_id,
                 "firstname" => $this->firstname,
                 "lastname" => $this->lastname,
                 "living_at" => $this->living_at,
@@ -73,6 +78,7 @@ class Certificate implements ApiObject {
                 "city" => $this->city,
                 "use_type" => $this->use_type,
                 "private_usage" => $this->private_usage,
+                "sent_to" => $this->sent_to,
                 "pdf" => $this->pdf,
                 "permalink" => $this->permalink,
                 "signed" => $this->signed,
@@ -130,6 +136,15 @@ class Certificate implements ApiObject {
 
 	public function setWebhookUrl($webhook_url){
 		$this->webhook_url = $webhook_url;
+		return $this;
+	}
+
+	public function getLanguageId(){
+		return $this->webhook_url;
+	}
+
+	public function setLanguageId($language_id){
+		$this->language_id = $language_id;
 		return $this;
 	}
 
@@ -229,6 +244,15 @@ class Certificate implements ApiObject {
 	public function getSignLocation(){
 		return $this->sign_location;
 	} 
+
+	public function getSentTo(){
+		return $this->sent_to;
+	}
+
+	public function setSentTo($sent_to){
+		$this->sent_to = $sent_to;
+		return $this;
+	}
 
 	public function getPermalink(){
 		return $this->permalink;

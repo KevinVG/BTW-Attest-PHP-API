@@ -39,6 +39,7 @@ class CertificatesTest extends \PHPUnit_Framework_TestCase
             ->setReference('INVOICE ' . rand(1000,9999))
             ->setReferenceDocument('invoice')
             ->setReferenceDate(date('Y-m-d'))
+            ->setLanguageId('fra')
             ->setFirstname('Kevin')
             ->setLastname('Van Gyseghem')
             ->setLivingAt('Asse')
@@ -47,7 +48,8 @@ class CertificatesTest extends \PHPUnit_Framework_TestCase
             ->setZipcode('1730')
             ->setCity('Asse')
             ->setUseType('owner')
-            ->setPrivateUsage('only');
+            ->setPrivateUsage('only')
+            ->setSentTo('kevin@infinwebs.be');
          
         $uuid = $vatCertificates->Certificates->add($certificate); 
         $UUIDv4 = '/^[0-9A-F]{8}-[0-9A-F]{4}-4[0-9A-F]{3}-[89AB][0-9A-F]{3}-[0-9A-F]{12}$/i';
@@ -60,6 +62,7 @@ class CertificatesTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($certificate->getReference(), $apiCertificate->getReference());
         $this->assertEquals($certificate->getReferenceDocument(), $apiCertificate->getReferenceDocument());
         $this->assertEquals($certificate->getReferenceDate(), $apiCertificate->getReferenceDate());
+        $this->assertEquals($certificate->getLanguageId(), $apiCertificate->getLanguageId());
         $this->assertEquals($certificate->getFirstname(), $apiCertificate->getFirstname());
         $this->assertEquals($certificate->getLastname(), $apiCertificate->getLastname());
         $this->assertEquals($certificate->getLivingAt(), $apiCertificate->getLivingAt());
@@ -69,6 +72,7 @@ class CertificatesTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($certificate->getCity(), $apiCertificate->getCity());
         $this->assertEquals($certificate->getUseType(), $apiCertificate->getUseType());
         $this->assertEquals($certificate->getPrivateUsage(), $apiCertificate->getPrivateUsage());
+        $this->assertEquals($certificate->getSentTo(), $apiCertificate->getSentTo());
         
         $apiCertificate
             ->setReference('PROPOSAL ' . rand(1000,9999))
