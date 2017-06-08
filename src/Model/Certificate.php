@@ -59,31 +59,29 @@ class Certificate implements ApiObject {
      * Formats to object as array for use in the API
      **/
     public function asArray() {
-        return array(
-            "Certificate" => array(
-            	"uuid" => $this->uuid,
-            	"number_formatted" => $this->number_formatted,
-                "reference_document" => $this->reference_document,
-                "reference" => $this->reference,
-                "reference_date" => $this->reference_date,
-                "reference_url" => $this->reference_url,
-                "webhook_url" => $this->webhook_url,
-                "language_id" => $this->language_id,
-                "firstname" => $this->firstname,
-                "lastname" => $this->lastname,
-                "living_at" => $this->living_at,
-                "street" => $this->street,
-                "streetnumber" => $this->streetnumber,
-                "zipcode" => $this->zipcode,
-                "city" => $this->city,
-                "use_type" => $this->use_type,
-                "private_usage" => $this->private_usage,
-                "sent_to" => $this->sent_to,
-                "pdf" => $this->pdf,
-                "permalink" => $this->permalink,
-                "signed" => $this->signed,
-            )    
-        );
+    	$array = ['Certificate' => []];
+    	if($this->uuid) { $array["Certificate"]["uuid"] = $this->uuid; }
+    	if($this->number_formatted) { $array["Certificate"]["number_formatted"] = $this->number_formatted; }
+    	if($this->reference_document) { $array["Certificate"]["reference_document"] = $this->reference_document; }
+    	if($this->reference) { $array["Certificate"]["reference"] = $this->reference; }
+    	if($this->reference_date) { $array["Certificate"]["reference_date"] = $this->reference_date; }
+    	if($this->reference_url) { $array["Certificate"]["reference_url"] = $this->reference_url; }
+    	if($this->webhook_url) { $array["Certificate"]["webhook_url"] = $this->webhook_url; }
+    	if($this->language_id) { $array["Certificate"]["language_id"] = $this->language_id; }
+    	if($this->firstname) { $array["Certificate"]["firstname"] = $this->firstname; }
+    	if($this->lastname) { $array["Certificate"]["lastname"] = $this->lastname; }
+    	if($this->living_at) { $array["Certificate"]["living_at"] = $this->living_at; }
+    	if($this->street) { $array["Certificate"]["street"] = $this->street; }
+    	if($this->streetnumber) { $array["Certificate"]["streetnumber"] = $this->streetnumber; }
+    	if($this->zipcode) { $array["Certificate"]["zipcode"] = $this->zipcode; }
+    	if($this->city) { $array["Certificate"]["city"] = $this->city; }
+    	if($this->use_type) { $array["Certificate"]["use_type"] = $this->use_type; }
+    	if($this->private_usage) { $array["Certificate"]["private_usage"] = $this->private_usage; }
+    	if($this->sent_to) { $array["Certificate"]["sent_to"] = $this->sent_to; }
+    	if($this->pdf) { $array["Certificate"]["pdf"] = $this->pdf; }
+    	if($this->permalink) { $array["Certificate"]["permalink"] = $this->permalink; }
+    	if($this->signed) { $array["Certificate"]["signed"] = $this->signed; }
+        return $array;
     } 
     
     public function getUuid(){
