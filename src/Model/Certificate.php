@@ -90,6 +90,11 @@ class Certificate implements ApiObject {
 		return $this->uuid;
 	}
     
+    public function setUuid($uuid){
+		$this->uuid = $uuid;
+		return $this;
+	}
+    
     public function getNumberFormatted(){
 		return $this->number_formatted;
 	}
